@@ -5,11 +5,11 @@
 	table.hide()
 	function evalLogic(logicStr){
 		logicStr = logicStr
-		  .replace(/\&+|\*|\/\\/g, '&&')
-		  .replace(/\|+|\+|\\\//g, '||')
-		  .replace(/~/g, '!')
-		  .replace(/==|<=>|<->/g, '===')
-		  .replace(/=>|->/g, '<=')
+		  .replace(/∧|\&+|\*|\/\\/g, '&&')
+		  .replace(/∨|\|+|\+|\\\//g, '||')
+		  .replace(/¬|~/g, '!')
+		  .replace(/↔|==|<=>|<->/g, '===')
+		  .replace(/→|=>|->/g, '<=')
 		console.log(logicStr)
 		const matches = new Set(logicStr.match(/\w+/g))
 		const parameters = Array.from(matches)
@@ -57,6 +57,12 @@
 					.concat(`<td>${possibility.result ? 'T' : 'F'}</td>`)
 				}</tr>`)
 			})
+			$('#logic-expression-input').val(expression
+							 .replace(/\&+|\*|\/\\/g, '∧')
+							 .replace(/\|+|\+|\\\//g, '∨')
+							 .replace(/~/g, '¬')
+							 .replace(/==|<=>|<->/g, '↔')
+							 .replace(/=>|->/g, '→'))
 		} catch (error) {
 			table.hide()
 			errorMsg.text(error.message)
